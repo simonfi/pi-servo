@@ -1,0 +1,3 @@
+*.o
+examples/move-servo-7
+examples/move-servos-7_8_25
