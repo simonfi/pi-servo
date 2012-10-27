@@ -47,13 +47,16 @@ void ps_prepare()
 void ps_start_servo(ps_servo* servo)
 {
 	int	err;
+	char	task_name[32];
+
+	sprintf(task_name, "servo-driver-%d", servo->gpio);
 
 	// Ensure GPIO pin is set for output
 	INP_GPIO(servo->gpio);
 	OUT_GPIO(servo->gpio);	
 
 	err = rt_task_create(	&servo->task,
-				"servo-driver",
+				task_name,
 				SERVO_TASK_STACK,
 				SERVO_TASK_PRIO,
 				SERVO_TASK_MODE);
